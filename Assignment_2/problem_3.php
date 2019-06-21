@@ -1,33 +1,56 @@
 <?php
-$n = readline(); //array size (n*n)
 
-$ara = array();
-$ara = array_fill(0, $n+2, array());
+$stdin = fopen('php://stdin', 'r');
+$stdout = fopen('php://stdout', 'w');
+echo "Enter size:";
+fscanf(STDIN,"%d\n",$size);
+//echo $size;
+for($i=0;$i<$size+2;$i++)
+ for($j=0;$j<$size+2;$j++)
+ 
+   $items[$i][$j]=0;
+   //echo "\n";
+ 
+fprintf(STDOUT,"Enter number of  %d value:\n",pow($size,2));
+ 
+ for($i=1;$i<=$size;$i++)
+  for($j=1;$j<=$size;$j++)
+  {
+     fscanf(STDIN,"%d\n",$items[$i][$j]);
 
-for($i=0; $i<=$n+1; $i++)
-    $ara[$i] = array_fill(0, $n+2, 0);
+    
+  }  
+  
+ 
 
-for($i=0; $i<$n; $i++)
+
+for($i=0;$i<$size+2;$i++)
 {
-    $tmp = explode(" ", readline());
-    for($j=1; $j<=$n; $j++)
-        $ara[$i+1][$j] = $tmp[$j-1];
+  for($j=0;$j<$size+2;$j++)
+  {
+     fprintf(STDOUT,"%d ",$items[$i][$j]);
+     
+    
+  } 
+  echo "\n";
 }
-$mx = 0; $indX = 0; $indY = 0;
 
-for($i = 1; $i <= $n; $i++)
+echo "\n";
+
+$sum=0;$max=0;$x=0;$y=0;
+for($i=1;$i<=$size;$i++)
 {
-    for($j = 1; $j <= $n; $j++)
+  for($j=1;$j<=$size;$j++)
+  {
+    // fscanf(STDIN,"%d\n",$items[$i][$j]);
+    $sum=$items[$i][$j]+$items[$i-1][$j]+$items[$i][$j-1]+$items[$i][$j+1]+$items[$i+1][$j];
+    
+    if($sum>$max)
     {
-        $tmp = $ara[$i][$j] + $ara[$i+1][$j] + $ara[$i-1][$j]
-         + $ara[$i][$j+1] + $ara[$i][$j-1];
-        if($tmp>$mx)
-        {
-            $mx = $tmp;
-            $indX = $i-1; $indY = $j-1;
-        }
+        $max=$sum;
+        $x=$i-1;
+        $y=$j-1;
     }
-        //echo $ara[$i][$j]." ";
-    //echo "\n";
+  }  
 }
-echo "Sum = $mx\n = ($indX , $indY)\n";
+echo "index:$x $y sum:$max";
