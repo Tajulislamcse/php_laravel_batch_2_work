@@ -1,21 +1,20 @@
 <?php
-
 $stdin = fopen('php://stdin', 'r');
 $stdout = fopen('php://stdout', 'w');
 
+fscanf(STDIN,"%d",$t);
 
+
+while($t--)
+{
 fscanf(STDIN,"%s",$str);
-//$str=fgets(STDIN);
-
+if(strcmp($str,"end")==0)
+break;
 $sum=0;
-$str2="end";
- 
-   // while()
 for($i=0;$i<strlen($str);$i++)
-{  if(strcmp($str,$str2)==0)
-    break;
+ {
   $sum+=ord($str[$i]);
-
  }
- echo $sum;
- 
+ echo $sum."\n";
+
+}
