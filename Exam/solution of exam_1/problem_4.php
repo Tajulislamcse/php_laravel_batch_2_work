@@ -2,10 +2,10 @@
 $stdin = fopen('php://stdin', 'r');
 $stdout = fopen('php://stdout', 'w');
 
-fscanf(STDIN,"%d",$t);
+//fscanf(STDIN,"%d",$t);
 
 
-while($t--)
+while(1)
 {
 fscanf(STDIN,"%s\n",$str);
 $str2="end";
@@ -21,9 +21,9 @@ for($i=0;$i<strlen($org_str);$i++)
       if($org_str[$i]==$str[$j])
         $count++;
    }
-        if($count==0)//if count==0 than continue. because no need to print 0 for no occurence.
+        if($count==0)
              continue;
-             else echo "$org_str[$i] $count"."\n";//just print org_str[0] for this case a and count value.
+             else echo "$org_str[$i] $count"."\n";
    
              $count=0;//
          
