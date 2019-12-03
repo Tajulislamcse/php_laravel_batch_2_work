@@ -11,31 +11,43 @@ class Driver
 		# code...
 		$this->_vehicle=$vehicle;
 	}
-	public function startVehicle()
+	public function __destruct()
 	{
 		$this->_vehicle->start();
 	}
 }
 
-class Car implements IVehicle
+
+class Vehicle implements IVehicle
 {
-	public function start()
+	private $_engine;
+	public function __construct(IEngine $engine)
 	{
-		print("car is runnning");
+		$this->_engine=$engine;
 	}
-}
-class Plane implements IVehicle
-{
 	public function start()
-	{
-		print("plane is runnning");
+	{ 
+		$this->_engine->start();
+		echo "\n";
+		print("vehicle is runnning");
 	}
 }
 interface IVehicle
 {
-   public function start();
+	public function start();
 }
-$car=new Car();
-$plane=new Plane();
-$driver=new Driver($plane);
-$driver->startVehicle();
+
+class Engine implements IEngine
+{
+	public function start()
+	{
+		print("engine is starting");
+	}
+}
+interface IEngine{
+	public function start();
+}
+$engine=new Engine();
+$vehicle=new Vehicle($engine);
+$driver=new Driver($vehicle);
+//$driver->startVehicle();
